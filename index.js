@@ -1,10 +1,10 @@
-import cors from "cors";
-import dotenv from "dotenv";
-import express from "express";
-import mongoose from "mongoose";
+require("dotenv").config();
+const cors = require("cors");
+const express = require("express");
+const mongoose = require("mongoose");
+const userRoutes = require("./src/user/usersRoutes.js");
 
 // MiddleWares
-dotenv.config();
 const app = express();
 const port = process.env.PORT;
 app.use(cors());
@@ -18,7 +18,9 @@ mongoose
   .catch((err) => {
     console.error("MongoDB connection error:", err);
   });
-
+// Routes
+app.use("/users", userRoutes);
+// App listning to the port
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
