@@ -3,10 +3,12 @@ const cors = require("cors");
 const express = require("express");
 const mongoose = require("mongoose");
 const userRoutes = require("./src/user/usersRoutes.js");
+const bodyParser = require("body-parser");
 
-// MiddleWares
 const app = express();
 const port = process.env.PORT;
+// MiddleWares
+app.use(bodyParser.json());
 app.use(cors());
 // Connect mongoDB
 const mongoURI = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.lgdlhyd.mongodb.net/`;
